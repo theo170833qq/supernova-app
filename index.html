@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Supernova</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              brand: ['"Space Grotesk"', 'sans-serif'],
+            },
+            colors: {
+              cosmic: {
+                900: '#0B0C15', // Deep space
+                800: '#13141F', // Sidebar
+                700: '#1E1F2E', // Cards/Input
+                100: '#E2E8F0',
+              },
+              primary: {
+                500: '#8b5cf6', // Violet
+                600: '#7c3aed',
+              },
+              accent: {
+                500: '#d946ef', // Fuchsia
+              }
+            },
+            animation: {
+              'fade-in': 'fadeIn 0.5s ease-out',
+              'slide-up': 'slideUp 0.4s ease-out',
+              'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'float': 'float 6s ease-in-out infinite',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              slideUp: {
+                '0%': { transform: 'translateY(10px)', opacity: '0' },
+                '100%': { transform: 'translateY(0)', opacity: '1' },
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* Cosmic Background */
+      body {
+        background-color: #0B0C15;
+        background-image: 
+          radial-gradient(circle at 15% 50%, rgba(124, 58, 237, 0.08), transparent 25%), 
+          radial-gradient(circle at 85% 30%, rgba(217, 70, 239, 0.08), transparent 25%);
+        background-attachment: fixed;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.1); 
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.2); 
+      }
+      
+      /* Markdown Content Styling */
+      .markdown-content p {
+        margin-bottom: 1em;
+        line-height: 1.7;
+        color: #e2e8f0;
+      }
+      .markdown-content h1, .markdown-content h2, .markdown-content h3 {
+        margin-top: 1.5em;
+        margin-bottom: 0.5em;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: -0.02em;
+      }
+      .markdown-content h1 { font-size: 1.75em; }
+      .markdown-content h2 { font-size: 1.4em; }
+      .markdown-content ul, .markdown-content ol {
+        margin-bottom: 1em;
+        padding-left: 1.5em;
+        color: #cbd5e1;
+      }
+      .markdown-content ul { list-style-type: disc; }
+      .markdown-content ol { list-style-type: decimal; }
+      .markdown-content pre {
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 1.25em;
+        border-radius: 0.75em;
+        overflow-x: auto;
+        margin-bottom: 1.25em;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .markdown-content code {
+        font-family: 'Fira Code', monospace;
+        background-color: rgba(124, 58, 237, 0.15);
+        color: #e9d5ff;
+        padding: 0.2em 0.4em;
+        border-radius: 0.3em;
+        font-size: 0.9em;
+      }
+      .markdown-content pre code {
+        background-color: transparent;
+        padding: 0;
+        color: #e2e8f0;
+      }
+      .markdown-content a {
+        color: #a78bfa;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(167, 139, 250, 0.4);
+        transition: border-color 0.2s;
+      }
+      .markdown-content a:hover {
+        border-color: #a78bfa;
+      }
+      .markdown-content blockquote {
+        border-left: 4px solid #7c3aed;
+        background: rgba(124, 58, 237, 0.05);
+        padding: 0.5em 0.5em 0.5em 1em;
+        border-radius: 0 0.5em 0.5em 0;
+        font-style: italic;
+        color: #cbd5e1;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.32.0",
+    "react-markdown": "https://aistudiocdn.com/react-markdown@^10.1.0",
+    "uuid": "https://aistudiocdn.com/uuid@^13.0.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0"
+  }
+}
+</script>
+</head>
+  <body class="bg-cosmic-900 text-gray-100 h-[100dvh] overflow-hidden antialiased">
+    <div id="root" class="h-full"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
